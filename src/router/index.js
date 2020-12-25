@@ -9,6 +9,10 @@ const routes = [
     component: WDDiscover,
   },
   {
+    path: '/discover',
+    component: WDDiscover,
+  },
+  {
     path: '/mine',
     component: WDMine,
   },
