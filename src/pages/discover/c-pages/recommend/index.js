@@ -1,5 +1,27 @@
-import React, { memo } from 'react'
+import React, { memo, useEffect } from 'react'
+import { connect } from 'react-redux'
+import { getTopBannerAction } from './store/actionCreators'
 
-export default memo(function WDRecommend() {
-  return <div>WDRecommend</div>
-})
+function WDRecommend(props) {
+  const { topBanners, getBanners } = props
+  useEffect(() => {
+    getBanners()
+  }, [getBanners])
+  return <div>WDRecommend: {topBanners.length}</div>
+}
+
+const mapStateToProps = (state) => {
+  return {
+    topBanners: state.recommend.topBanners,
+  }
+}
+
+const mapDispatchToProps = (dispacth) => {
+  return {
+    getBanners: () => {
+      dispacth(getTopBannerAction())
+    },
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(memo(WDRecommend))
