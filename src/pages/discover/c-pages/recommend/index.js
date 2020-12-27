@@ -2,6 +2,7 @@ import React, { memo } from 'react'
 
 import WDTopBanner from './c-cpns/top-banner'
 import WDHotRecommend from './c-cpns/hot-recommend'
+import WDNewAlbum from './c-cpns/new-album'
 import {
   RecommendWrapper,
   Content,
@@ -16,6 +17,7 @@ function WDRecommend() {
       <Content className="wrap-v2">
         <RecommendLeft>
           <WDHotRecommend />
+          <WDNewAlbum />
         </RecommendLeft>
         <RecommendRight></RecommendRight>
       </Content>

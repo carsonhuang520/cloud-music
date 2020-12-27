@@ -11,3 +11,9 @@ export function getHotRecommends() {
     url: '/personalized?limit=8',
   })
 }
+
+export function getNewAlbums() {
+  return request({
+    url: '/album/newest',
+  })
+}

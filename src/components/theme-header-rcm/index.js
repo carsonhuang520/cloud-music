@@ -14,7 +14,9 @@ const WDThemeHeaderRCM = memo(function (props) {
             return (
               <div className="item" key={item}>
                 <a href="todo">{item}</a>
-                <span className="divider">|</span>
+                {index !== keywords.length - 1 && (
+                  <span className="divider">|</span>
+                )}
               </div>
             )
           })}
