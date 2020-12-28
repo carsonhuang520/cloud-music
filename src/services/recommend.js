@@ -17,3 +17,9 @@ export function getNewAlbums() {
     url: '/album/newest',
   })
 }
+
+export function getTopList(id) {
+  return request({
+    url: `/playlist/detail?id=${id}`,
+  })
+}
