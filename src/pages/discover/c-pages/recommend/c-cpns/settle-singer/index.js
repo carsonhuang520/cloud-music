@@ -1,5 +1,5 @@
 import React, { memo, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 
 import { getSettleSingersAction } from '../../store/actionCreators'
 import { getSizeImage } from '@/utils/format-utils'
@@ -12,7 +12,7 @@ export default memo(function WDSettleSinger() {
     return {
       settleSingers: state.getIn(['recommend', 'settleSingers']),
     }
-  })
+  }, shallowEqual)
 
   const dispatch = useDispatch()
   useEffect(() => {
