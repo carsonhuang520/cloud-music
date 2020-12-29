@@ -14,6 +14,7 @@ export default memo(function WDAlbumCover(props) {
         <a href="todo" className="cover sprite_cover" title={info.name}>
           {info.name}
         </a>
+        <a href="/todo" className="play sprite_icon">播放</a>
       </div>
       <div className="album-info">
         <div className="name text-nowrap">{info.name}</div>
