@@ -8,6 +8,7 @@ import routes from '@/router'
 
 import WDAppHeader from '@/components/app-header'
 import WDAppFooter from '@/components/app-footer'
+import WDAppPlayerBar from '@/pages/player/app-player-bar'
 
 export default memo(function App() {
   return (
@@ -16,6 +17,7 @@ export default memo(function App() {
         <WDAppHeader />
         {renderRoutes(routes)}
         <WDAppFooter />
+        <WDAppPlayerBar />
       </HashRouter>
     </Provider>
   )

@@ -128,6 +128,14 @@ button {
   background: url(../img/sprite_table.png) no-repeat 0 9999px;
 }
 
+.sprite_playbar {
+  background: url(../img/playbar_sprite.png) no-repeat 0 9999px;
+}
+
+.sprite_playlist {
+  background: url(../img/playlist_sprite.png) no-repeat 0 9999px;
+}
+
 .image_cover {
   position: absolute;
   left: 0;
@@ -136,4 +144,12 @@ button {
   bottom: 0;
   text-indent: -9999px;
   background: url(../img/sprite_cover.png) no-repeat -145px -57px;
+}
+
+.text_hover {
+  cursor: pointer;
+}
+
+.text_hover:hover {
+  text-decoration: underline;
 }
