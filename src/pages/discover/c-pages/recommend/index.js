@@ -4,6 +4,9 @@ import WDTopBanner from './c-cpns/top-banner'
 import WDHotRecommend from './c-cpns/hot-recommend'
 import WDNewAlbum from './c-cpns/new-album'
 import WDRecomendRanking from './c-cpns/recommend-ranking'
+import WDUserLogin from './c-cpns/user-login'
+import WDSettleSinger from './c-cpns/settle-singer'
+import WDHotRadio from './c-cpns/hot-radio'
 import {
   RecommendWrapper,
   Content,
@@ -21,7 +24,11 @@ function WDRecommend() {
           <WDNewAlbum />
           <WDRecomendRanking />
         </RecommendLeft>
-        <RecommendRight></RecommendRight>
+        <RecommendRight>
+          <WDUserLogin />
+          <WDSettleSinger />
+          <WDHotRadio />
+        </RecommendRight>
       </Content>
     </RecommendWrapper>
   )

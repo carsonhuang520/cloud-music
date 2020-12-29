@@ -23,3 +23,12 @@ export function getTopList(id) {
     url: `/playlist/detail?id=${id}`,
   })
 }
+
+export function getArtistList(limit) {
+  return request({
+    url: '/artist/list',
+    params: {
+      limit,
+    },
+  })
+}
