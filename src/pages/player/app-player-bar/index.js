@@ -2,7 +2,10 @@ import React, { memo, useState, useEffect, useRef, useCallback } from 'react'
 import { useDispatch, useSelector, shallowEqual } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
-import { getSongDetailAction } from '../store/actionCreators'
+import {
+  getSongDetailAction,
+  changePlaySequenceAction,
+} from '../store/actionCreators'
 import { getSizeImage, formatDate, getPlaySong } from '@/utils/format-utils'
 
 import { Slider } from 'antd'
@@ -14,9 +17,10 @@ export default memo(function WDAppPlayerBar() {
   const [isChanging, setIsChanging] = useState(false)
   const [progress, setProgress] = useState(0)
 
-  const { currentSong } = useSelector((state) => {
+  const { currentSong, playSequence } = useSelector((state) => {
     return {
       currentSong: state.getIn(['player', 'currentSong']),
+      playSequence: state.getIn(['player', 'playSequence']),
     }
   }, shallowEqual)
 
@@ -30,7 +34,6 @@ export default memo(function WDAppPlayerBar() {
   }, [currentSong])
 
   const audioRef = useRef()
-
   const picUrl = (currentSong.al && currentSong.al.picUrl) || ''
   const singerName = (currentSong.ar && currentSong.ar[0].name) || '未知歌手'
   const duration = currentSong.dt || 0
@@ -85,7 +88,7 @@ export default memo(function WDAppPlayerBar() {
         </Control>
         <PlayInfo>
           <div className="image">
-            <NavLink to="/">
+            <NavLink to="/discover/player">
               <img src={getSizeImage(picUrl, 35)} alt="" />
             </NavLink>
           </div>
@@ -108,14 +111,19 @@ export default memo(function WDAppPlayerBar() {
             </div>
           </div>
         </PlayInfo>
-        <Operator>
+        <Operator sequence={playSequence}>
           <div className="left">
             <button className="sprite_playbar btn favor"></button>
             <button className="sprite_playbar btn share"></button>
           </div>
           <div className="right sprite_playbar">
             <button className="sprite_playbar btn volume"></button>
-            <button className="sprite_playbar btn loop"></button>
+            <button
+              className="sprite_playbar btn loop"
+              onClick={(e) =>
+                dispatch(changePlaySequenceAction(playSequence + 1))
+              }
+            ></button>
             <button className="sprite_playbar btn playlist">2</button>
           </div>
         </Operator>

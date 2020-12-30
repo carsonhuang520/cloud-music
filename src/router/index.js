@@ -8,6 +8,7 @@ import WDSongs from '@/pages/discover/c-pages/songs'
 import WDAlbum from '@/pages/discover/c-pages/album'
 import WDRanking from '@/pages/discover/c-pages/ranking'
 import WDDjradio from '@/pages/discover/c-pages/djradio'
+import WDPlayer from '@/pages/player'
 
 import WDMine from '@/pages/mine'
 import WDFriend from '@/pages/friend'
@@ -50,6 +51,10 @@ const routes = [
       {
         path: '/discover/album',
         component: WDAlbum,
+      },
+      {
+        path: '/discover/player',
+        component: WDPlayer,
       },
     ],
   },

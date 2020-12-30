@@ -116,6 +116,10 @@ export const PlayInfo = styled.div`
           border: none;
           margin-top: -7px;
           background: url(${require('@/assets/img/sprite_icon.png').default}) 0 -250px;
+
+          &:focus {
+            box-shadow: none;
+          }
         }
       }
 
@@ -186,10 +190,28 @@ export const Operator = styled.div`
 
     .loop {
       cursor: pointer;
-      background-position: -66px -248px;
+      background-position: ${(props) => {
+        switch (props.sequence) {
+          case 1:
+            return '-66px -248px'
+          case 2:
+            return '-66px -344px'
+          default:
+            return '-3px -344px'
+        }
+      }};
 
       &:hover {
-        background-position: -93px -248px;
+        background-position: ${(props) => {
+          switch (props.sequence) {
+            case 1:
+              return '-93px -248px'
+            case 2:
+              return '-93px -344px'
+            default:
+              return '-33px -344px'
+          }
+        }};
       }
     }
 
