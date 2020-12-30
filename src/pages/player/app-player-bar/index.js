@@ -6,10 +6,11 @@ import {
   getSongDetailAction,
   changePlaySequenceAction,
   changePlaySongAction,
+  changeCurrentLyricIndexAction,
 } from '../store/actionCreators'
 import { getSizeImage, formatDate, getPlaySong } from '@/utils/format-utils'
 
-import { Slider } from 'antd'
+import { Slider, message } from 'antd'
 import { PlayerBarWrapper, Control, PlayInfo, Operator } from './style'
 
 export default memo(function WDAppPlayerBar() {
@@ -18,12 +19,20 @@ export default memo(function WDAppPlayerBar() {
   const [isChanging, setIsChanging] = useState(false)
   const [progress, setProgress] = useState(0)
 
-  const { currentSong, playSequence, playList } = useSelector((state) => {
+  const {
+    currentSong,
+    playSequence,
+    playList,
+    lyricList,
+    currentLyricIndex,
+  } = useSelector((state) => {
     return {
       currentSong: state.getIn(['player', 'currentSong']),
       playSequence: state.getIn(['player', 'playSequence']),
       playList: state.getIn(['player', 'playList']),
       currentSongIndex: state.getIn(['player', 'currentSongIndex']),
+      lyricList: state.getIn(['player', 'lyricList']),
+      currentLyricIndex: state.getIn(['player', 'currentLyricIndex']),
     }
   }, shallowEqual)
 
@@ -60,6 +69,31 @@ export default memo(function WDAppPlayerBar() {
     if (!isChanging) {
       setCurrentTime(e.target.currentTime * 1000)
       setProgress((currentTime / duration) * 100)
+    }
+
+    updateLyric(e.target.currentTime)
+  }
+
+  const updateLyric = (currentTime) => {
+    let i = 0
+    for (; i < lyricList.length; i++) {
+      if (currentTime * 1000 < lyricList[i].time) {
+        break
+      }
+    }
+
+    const finalIndex = i - 1
+    if (currentLyricIndex !== finalIndex) {
+      dispatch(changeCurrentLyricIndexAction(finalIndex))
+      const tempLyric = lyricList[finalIndex]
+      if (tempLyric && tempLyric.content !== '') {
+        message.open({
+          content: tempLyric.content,
+          key: 'lyric',
+          duration: 0,
+          className: 'lyric-message',
+        })
+      }
     }
   }
 
