@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom'
 import {
   getSongDetailAction,
   changePlaySequenceAction,
+  changePlaySongAction,
 } from '../store/actionCreators'
 import { getSizeImage, formatDate, getPlaySong } from '@/utils/format-utils'
 
@@ -17,10 +18,12 @@ export default memo(function WDAppPlayerBar() {
   const [isChanging, setIsChanging] = useState(false)
   const [progress, setProgress] = useState(0)
 
-  const { currentSong, playSequence } = useSelector((state) => {
+  const { currentSong, playSequence, playList } = useSelector((state) => {
     return {
       currentSong: state.getIn(['player', 'currentSong']),
       playSequence: state.getIn(['player', 'playSequence']),
+      playList: state.getIn(['player', 'playList']),
+      currentSongIndex: state.getIn(['player', 'currentSongIndex']),
     }
   }, shallowEqual)
 
@@ -31,6 +34,14 @@ export default memo(function WDAppPlayerBar() {
 
   useEffect(() => {
     audioRef.current.src = getPlaySong(currentSong.id)
+    audioRef.current
+      .play()
+      .then((res) => {
+        setIsPlaying(true)
+      })
+      .catch((error) => {
+        setIsPlaying(false)
+      })
   }, [currentSong])
 
   const audioRef = useRef()
@@ -49,6 +60,15 @@ export default memo(function WDAppPlayerBar() {
     if (!isChanging) {
       setCurrentTime(e.target.currentTime * 1000)
       setProgress((currentTime / duration) * 100)
+    }
+  }
+
+  const timeEnded = () => {
+    if (playSequence === 2 || playList.length === 1) {
+      audioRef.current.currentTime = 0
+      audioRef.current.play()
+    } else {
+      dispatch(changePlaySongAction(1))
     }
   }
 
@@ -79,12 +99,18 @@ export default memo(function WDAppPlayerBar() {
     <PlayerBarWrapper className="sprite_playbar">
       <div className="content wrap-v2">
         <Control isPlaying={isPlaying}>
-          <button className="sprite_playbar btn prev"></button>
+          <button
+            className="sprite_playbar btn prev"
+            onClick={() => dispatch(changePlaySongAction(-1))}
+          ></button>
           <button
             className="sprite_playbar btn play"
             onClick={() => playMusic()}
           ></button>
-          <button className="sprite_playbar btn next"></button>
+          <button
+            className="sprite_playbar btn next"
+            onClick={() => dispatch(changePlaySongAction(1))}
+          ></button>
         </Control>
         <PlayInfo>
           <div className="image">
@@ -99,6 +125,9 @@ export default memo(function WDAppPlayerBar() {
             </div>
             <div className="progress">
               <Slider
+                tipFormatter={(value) =>
+                  formatDate((value / 100) * duration, 'mm:ss')
+                }
                 value={progress}
                 onChange={sliderChange}
                 onAfterChange={sliderAfterChange}
@@ -124,11 +153,13 @@ export default memo(function WDAppPlayerBar() {
                 dispatch(changePlaySequenceAction(playSequence + 1))
               }
             ></button>
-            <button className="sprite_playbar btn playlist">2</button>
+            <button className="sprite_playbar btn playlist">
+              {playList.length}
+            </button>
           </div>
         </Operator>
       </div>
-      <audio ref={audioRef} onTimeUpdate={timeUpdate} />
+      <audio ref={audioRef} onTimeUpdate={timeUpdate} onEnded={timeEnded} />
     </PlayerBarWrapper>
   )
 })
