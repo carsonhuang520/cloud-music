@@ -20,6 +20,8 @@ export default memo(function WDAppPlayerBar() {
   const [isChanging, setIsChanging] = useState(false)
   const [progress, setProgress] = useState(0)
   const [showPanel, setShowPanel] = useState(false)
+  const [showVolume, setShowVolume] = useState(false)
+  const [volume, setVolume] = useState(0)
 
   const {
     currentSong,
@@ -42,6 +44,10 @@ export default memo(function WDAppPlayerBar() {
   useEffect(() => {
     dispatch(getSongDetailAction(167876))
   }, [dispatch])
+
+  useEffect(() => {
+    audioRef.current.volume = volume / 100
+  }, [volume])
 
   useEffect(() => {
     audioRef.current.src = getPlaySong(currentSong.id)
@@ -131,6 +137,11 @@ export default memo(function WDAppPlayerBar() {
     [duration, isPlaying, playMusic]
   )
 
+  const volumeChange = (value) => {
+    setVolume(value)
+    // audioRef.current.volume = value / 100
+  }
+
   return (
     <PlayerBarWrapper className="sprite_playbar">
       <div className="content wrap-v2">
@@ -176,13 +187,21 @@ export default memo(function WDAppPlayerBar() {
             </div>
           </div>
         </PlayInfo>
-        <Operator sequence={playSequence}>
+        <Operator sequence={playSequence} isMute={volume === 0}>
           <div className="left">
             <button className="sprite_playbar btn favor"></button>
             <button className="sprite_playbar btn share"></button>
           </div>
           <div className="right sprite_playbar">
-            <button className="sprite_playbar btn volume"></button>
+            {showVolume && (
+              <div className="volume-control sprite_playbar">
+                <Slider vertical value={volume} onChange={volumeChange} />
+              </div>
+            )}
+            <button
+              className="sprite_playbar btn volume"
+              onClick={() => setShowVolume(!showVolume)}
+            ></button>
             <button
               className="sprite_playbar btn loop"
               onClick={(e) =>

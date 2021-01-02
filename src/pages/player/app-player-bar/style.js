@@ -179,12 +179,53 @@ export const Operator = styled.div`
     padding-left: 13px;
     background-position: -147px -248px;
 
+    .volume-control {
+      position: absolute;
+      bottom: 42px;
+      width: 32px;
+      height: 113px;
+      background-position: 0px -503px;
+
+      .ant-slider {
+        width: 4px;
+        height: 93px;
+        margin: 12px 10px;
+
+        .ant-slider-rail {
+          height: 0;
+          background: url(${require('@/assets/img/progress_bar.png').default})
+            right 0;
+        }
+
+        .ant-slider-track {
+          height: 9px;
+          background: url(${require('@/assets/img/playbar_sprite.png').default}) -40px
+            bottom;
+        }
+
+        .ant-slider-handle {
+          left: 2px;
+          width: 18px;
+          height: 20px;
+          border: none;
+          margin-top: -7px;
+          background: url(${require('@/assets/img/sprite_icon.png').default}) -40px -250px;
+
+          &:focus {
+            box-shadow: none;
+          }
+        }
+      }
+    }
+
     .volume {
       cursor: pointer;
-      background-position: -2px -248px;
+      background-position: ${(props) =>
+        props.isMute ? '-104px -69px' : '-2px -248px'};
 
       &:hover {
-        background-position: -31px -248px;
+        background-position: ${(props) =>
+          props.isMute ? '-126px -69px' : '-31px -248px'};
       }
     }
 
