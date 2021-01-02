@@ -11,6 +11,7 @@ import {
 import { getSizeImage, formatDate, getPlaySong } from '@/utils/format-utils'
 
 import { Slider, message } from 'antd'
+import WDAppPlayerPanel from '../app-player-panel'
 import { PlayerBarWrapper, Control, PlayInfo, Operator } from './style'
 
 export default memo(function WDAppPlayerBar() {
@@ -18,6 +19,7 @@ export default memo(function WDAppPlayerBar() {
   const [isPlaying, setIsPlaying] = useState(false)
   const [isChanging, setIsChanging] = useState(false)
   const [progress, setProgress] = useState(0)
+  const [showPanel, setShowPanel] = useState(false)
 
   const {
     currentSong,
@@ -187,13 +189,17 @@ export default memo(function WDAppPlayerBar() {
                 dispatch(changePlaySequenceAction(playSequence + 1))
               }
             ></button>
-            <button className="sprite_playbar btn playlist">
+            <button
+              className="sprite_playbar btn playlist"
+              onClick={() => setShowPanel(!showPanel)}
+            >
               {playList.length}
             </button>
           </div>
         </Operator>
       </div>
       <audio ref={audioRef} onTimeUpdate={timeUpdate} onEnded={timeEnded} />
+      {showPanel && <WDAppPlayerPanel />}
     </PlayerBarWrapper>
   )
 })
