@@ -139,7 +139,6 @@ export default memo(function WDAppPlayerBar() {
 
   const volumeChange = (value) => {
     setVolume(value)
-    // audioRef.current.volume = value / 100
   }
 
   return (

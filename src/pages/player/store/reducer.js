@@ -78,6 +78,8 @@ const defaultState = Map({
   playSequence: 0,
   lyricList: [],
   currentLyricIndex: 0,
+  simiPlaylist: [],
+  simiSongs: [],
 })
 
 function reducer(state = defaultState, action) {
@@ -94,6 +96,10 @@ function reducer(state = defaultState, action) {
       return state.set('lyricList', action.lyricList)
     case actionTypes.CHANGE_CURRENT_LYRIC_INDEX:
       return state.set('currentLyricIndex', action.index)
+    case actionTypes.CHANGE_SIMI_PLAYLIST:
+      return state.set('simiPlaylist', action.simiPlaylist)
+    case actionTypes.CHANGE_SIMI_SONGS:
+      return state.set('simiSongs', action.simiSongs)
     default:
       return state
   }

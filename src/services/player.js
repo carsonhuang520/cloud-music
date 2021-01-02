@@ -17,3 +17,18 @@ export const getLyric = (id) => {
     },
   })
 }
+
+export const getSimiPlaylist = (id) => {
+  return request({
+    url: '/simi/playlist',
+    params: {
+      id,
+    },
+  })
+}
+
+export const getSimiSongs = (id) => {
+  return request({
+    url: `/simi/song?id=${id}`,
+  })
+}

@@ -2,7 +2,12 @@ import * as actionTypes from './contants'
 
 import { getRandomNumber } from '@/utils/math-utils'
 import { parseLyric } from '@/utils/parse-lyric'
-import { getSongDetail, getLyric } from '@/services/player'
+import {
+  getSongDetail,
+  getLyric,
+  getSimiPlaylist,
+  getSimiSongs,
+} from '@/services/player'
 
 const changeCurrentSongAction = (song) => ({
   type: actionTypes.CHANGE_CURRENT_SONG,
@@ -22,6 +27,16 @@ const changePlayListAction = (playList) => ({
 const changeLyricListAction = (lyricList) => ({
   type: actionTypes.CHANGE_LYRIC_LIST,
   lyricList,
+})
+
+const changeSimiPlaylistAction = (simiPlaylist) => ({
+  type: actionTypes.CHANGE_SIMI_PLAYLIST,
+  simiPlaylist,
+})
+
+const changeSimiSongsAction = (simiSongs) => ({
+  type: actionTypes.CHANGE_SIMI_SONGS,
+  simiSongs,
 })
 
 export const changePlaySongAction = (param) => {
@@ -102,6 +117,22 @@ export const getLyricAction = (id) => {
     getLyric(id).then((res) => {
       const lyricList = parseLyric(res.lrc.lyric)
       dispatch(changeLyricListAction(lyricList))
+    })
+  }
+}
+
+export const getSimiPlaylistAction = (id) => {
+  return (dispatch) => {
+    getSimiPlaylist(id).then((res) => {
+      dispatch(changeSimiPlaylistAction(res.playlists))
+    })
+  }
+}
+
+export const getSimiSongsAction = (id) => {
+  return (dispatch) => {
+    getSimiSongs(id).then((res) => {
+      dispatch(changeSimiSongsAction(res.songs))
     })
   }
 }
