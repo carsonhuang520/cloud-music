@@ -1,11 +1,13 @@
 import React, { memo } from 'react'
 
+import { scrollTo } from '@/utils/ui-helper'
+
 import { BackToTopWrapper } from './style'
 
 export default memo(function WDBackToTop() {
   const goToTop = (e) => {
     e.preventDefault()
-    window.scrollTo(0, 0)
+    scrollTo(document.documentElement, 0, 300)
   }
 
   return (
