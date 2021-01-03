@@ -1,4 +1,4 @@
-import React, { memo, Suspense } from 'react'
+import React, { memo, Suspense, useState, useEffect } from 'react'
 import { HashRouter } from 'react-router-dom'
 import { renderRoutes } from 'react-router-config'
 import { Provider } from 'react-redux'
@@ -9,8 +9,26 @@ import routes from '@/router'
 import WDAppHeader from '@/components/app-header'
 import WDAppFooter from '@/components/app-footer'
 import WDAppPlayerBar from '@/pages/player/app-player-bar'
+import WDBackToTop from '@/components/back-to-top'
 
 export default memo(function App() {
+  const [backVisible, setBackVisible] = useState(false)
+
+  useEffect(() => {
+    const helper = () => {
+      if (document.documentElement.scrollTop >= 160) {
+        setBackVisible(true)
+      } else {
+        setBackVisible(false)
+      }
+    }
+    document.addEventListener('scroll', helper)
+
+    return () => {
+      document.removeEventListener('scroll', helper)
+    }
+  }, [])
+
   return (
     <Provider store={store}>
       <HashRouter>
@@ -20,6 +38,7 @@ export default memo(function App() {
         </Suspense>
         <WDAppFooter />
         <WDAppPlayerBar />
+        {backVisible && <WDBackToTop />}
       </HashRouter>
     </Provider>
   )

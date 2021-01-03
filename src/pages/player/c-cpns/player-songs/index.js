@@ -16,7 +16,7 @@ export default memo(function WDPlayerSongs() {
 
   const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(getSimiPlaylistAction(167876))
+    dispatch(getSimiPlaylistAction())
   }, [dispatch])
 
   return (

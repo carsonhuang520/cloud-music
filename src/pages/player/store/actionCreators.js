@@ -121,16 +121,26 @@ export const getLyricAction = (id) => {
   }
 }
 
-export const getSimiPlaylistAction = (id) => {
-  return (dispatch) => {
+export const getSimiPlaylistAction = () => {
+  return (dispatch, getState) => {
+    const id = getState().getIn(['player', 'currentSong']).id
+    if (!id) {
+      return
+    }
+
     getSimiPlaylist(id).then((res) => {
       dispatch(changeSimiPlaylistAction(res.playlists))
     })
   }
 }
 
-export const getSimiSongsAction = (id) => {
-  return (dispatch) => {
+export const getSimiSongsAction = () => {
+  return (dispatch, getState) => {
+    const id = getState().getIn(['player', 'currentSong']).id
+    if (!id) {
+      return
+    }
+
     getSimiSongs(id).then((res) => {
       dispatch(changeSimiSongsAction(res.songs))
     })
