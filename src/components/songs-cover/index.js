@@ -5,11 +5,14 @@ import { getCount, getSizeImage } from '@/utils/format-utils'
 import { SongsCoverWrapper } from './style'
 
 export default memo(function WDSongsCover(props) {
-  const { info } = props
+  const { info, right } = props
   return (
-    <SongsCoverWrapper>
+    <SongsCoverWrapper right={right}>
       <div className="cover-top">
-        <img src={getSizeImage(info.picUrl, 140)} alt={info.name} />
+        <img
+          src={getSizeImage(info.picUrl || info.coverImgUrl, 140)}
+          alt={info.name}
+        />
         <a className="cover sprite_cover" href="todo" title={info.name}>
           {info.name}
         </a>
