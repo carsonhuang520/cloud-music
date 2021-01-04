@@ -25,7 +25,7 @@ export const RankingListWrapper = styled.div`
         }
 
         .duration {
-          width: 91px;
+          width: 99px;
         }
 
         .singer {
@@ -36,10 +36,6 @@ export const RankingListWrapper = styled.div`
       tbody {
         td {
           padding: 6px 10px;
-
-          &.duration {
-            color: #666666;
-          }
         }
 
         tr:nth-child(2n) {
@@ -92,6 +88,70 @@ export const RankingListWrapper = styled.div`
 
           .name {
             margin-left: 10px;
+          }
+        }
+
+        .duration {
+          color: #666666;
+        }
+
+        .operate {
+          /* display: flex; */
+          align-items: center;
+          display: none;
+
+          .btn {
+            display: inline-block;
+            width: 13px;
+            height: 13px;
+            background-position: 0 -700px;
+            text-indent: -9999px;
+
+            &:hover {
+              background-position: -22px -700px;
+            }
+          }
+
+          .item {
+            display: inline-block;
+            width: 18px;
+            height: 16px;
+            margin: 2px 0 0 4px;
+            text-indent: -9999px;
+            cursor: pointer;
+
+            &.favor {
+              background-position: 0 -174px;
+
+              &:hover {
+                background-position: -20px -174px;
+              }
+            }
+
+            &.share {
+              background-position: 0 -195px;
+
+              &:hover {
+                background-position: -20px -195px;
+              }
+            }
+
+            &.download {
+              background-position: -81px -174px;
+
+              &:hover {
+                background-position: -104px -174px;
+              }
+            }
+          }
+        }
+
+        tr:hover {
+          .duration {
+            display: none;
+          }
+          .operate {
+            display: flex;
           }
         }
       }

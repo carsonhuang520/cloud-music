@@ -47,7 +47,23 @@ export default memo(function WDRankingList() {
                       <span className="name text_hover">{item.name}</span>
                     </div>
                   </td>
-                  <td className="duration">{formatDate(item.dt, 'mm:ss')}</td>
+                  <td>
+                    <span className="duration">
+                      {formatDate(item.dt, 'mm:ss')}
+                    </span>
+                    <div className="operate">
+                      <a
+                        href="/"
+                        className="btn sprite_icon2"
+                        title="添加到播放列表"
+                      >
+                        添加到列表
+                      </a>
+                      <span className="item favor sprite_table" title="收藏"></span>
+                      <span className="item share sprite_table" title="分享"></span>
+                      <span className="item download sprite_table" title="下载"></span>
+                    </div>
+                  </td>
                   <td className="text_hover">{item.ar[0].name}</td>
                 </tr>
               )
