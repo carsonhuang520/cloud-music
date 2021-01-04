@@ -4,6 +4,7 @@ import { Map } from 'immutable'
 const defaultState = Map({
   categorySongs: {},
   currentCategory: '全部',
+  category: [],
 })
 
 function reducer(state = defaultState, action) {
@@ -12,6 +13,8 @@ function reducer(state = defaultState, action) {
       return state.set('categorySongs', action.categorySongs)
     case actionTypes.CHANGE_CURRENT_CATEGORY:
       return state.set('currentCategory', action.currentCategory)
+    case actionTypes.CHANGE_CATEGORY:
+      return state.set('category', action.category)
     default:
       return state
   }
