@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const WineWrapper = styled.div`
+export const MineWrapper = styled.div`
   .content {
     background: #ffffff;
     min-height: 700px;

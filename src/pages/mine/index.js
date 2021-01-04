@@ -1,10 +1,10 @@
 import React, { memo } from 'react'
 
-import { WineWrapper } from './style'
+import { MineWrapper } from './style'
 
 export default memo(function WDMine() {
   return (
-    <WineWrapper>
+    <MineWrapper>
       <div className="content wrap-v2">
         <div className="pic">
           <a href="/todo" className="login">
@@ -12,6 +12,6 @@ export default memo(function WDMine() {
           </a>
         </div>
       </div>
-    </WineWrapper>
+    </MineWrapper>
   )
 })
