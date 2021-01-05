@@ -27,17 +27,19 @@ export const AlbumWrapper = styled.div`
 
     .play {
       position: absolute;
-      left: 71px;
+      left: ${(props) => (props.size === 130 ? '94px' : '71px')};
       bottom: 5px;
-      width: 22px;
-      height: 22px;
+      width: ${(props) => (props.size === 130 ? '28px' : '22px')};
+      height: ${(props) => (props.size === 130 ? '28px' : '22px')};
       display: none;
       text-indent: -9999px;
       text-decoration: none;
-      background-position: 0 -85px;
+      background-position: ${(props) =>
+        props.size === 130 ? '0 -140px' : '0 -85px'};
 
       &:hover {
-        background-position: 0 -110px;
+        background-position: ${(props) =>
+          props.size === 130 ? '0 -170px' : '0 -110px'};
       }
     }
 

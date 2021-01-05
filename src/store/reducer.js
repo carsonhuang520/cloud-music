@@ -4,6 +4,7 @@ import { reducer as playerReducer } from '../pages/player/store'
 import { reducer as rankingReducer } from '../pages/discover/c-pages/ranking/store'
 import { reducer as songsReducer } from '../pages/discover/c-pages/songs/store'
 import { reducer as artistReducer } from '../pages/discover/c-pages/artist/store'
+import { reducer as albumReducer } from '../pages/discover/c-pages/album/store'
 
 const reducer = combineReducers({
   recommend: recommendReducer,
@@ -11,6 +12,7 @@ const reducer = combineReducers({
   ranking: rankingReducer,
   songs: songsReducer,
   artist: artistReducer,
+  album: albumReducer
 })
 
 export default reducer
