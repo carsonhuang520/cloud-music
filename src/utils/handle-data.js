@@ -11,3 +11,14 @@ export const handleSongsCategory = (data) => {
   }
   return categoryData
 }
+
+export const generateSingerAlpha = () => {
+  let res = ['-1']
+  let start = 'A'.charCodeAt(0)
+  let end = 'Z'.charCodeAt(0)
+  for (let i = start; i <= end; i++) {
+    res.push(String.fromCharCode(i))
+  }
+  res.push('0')
+  return res
+}

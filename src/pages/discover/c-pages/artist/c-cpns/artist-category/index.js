@@ -28,13 +28,14 @@ export default memo(function WDArtistCategory() {
     return (
       <div>
         {artists.map((item) => {
-          const isActive = item.type === currentType && area === currentArea
+          const isActive =
+            item.type === currentType.type && area === currentArea
           return (
             <ArtistCategoryItem
               key={item.name}
               className={classNames({ active: isActive })}
             >
-              <span onClick={() => onSelectCategory(area, item.type)}>
+              <span onClick={() => onSelectCategory(area, item)}>
                 {item.name}
               </span>
             </ArtistCategoryItem>
