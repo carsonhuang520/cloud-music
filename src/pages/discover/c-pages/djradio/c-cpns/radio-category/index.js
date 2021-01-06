@@ -25,13 +25,13 @@ export default memo(function WDRadioCategory() {
   return (
     <RadioCategoryWrapper>
       <div className="category-list">
-        {categories.map((item, index) => {
+        {categories.map((item) => {
           return (
             <div
               key={item.id}
-              onClick={() => dispatch(changeCurrentIdAciton(index))}
+              onClick={() => dispatch(changeCurrentIdAciton(item.id))}
               className={classNames('category-item', {
-                active: index === currentId,
+                active: item.id === currentId,
               })}
             >
               <CategoryItemImage
