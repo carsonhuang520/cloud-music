@@ -1,0 +1,2 @@
+export const CHANGE_RADIO_CATEGORY = 'radio/CHANGE_RADIO_CATEGORY'
+export const CHANGE_CURRENT_ID = 'radio/CHANGE_CURRENT_ID'
