@@ -5,6 +5,7 @@ const defaultState = Map({
   categorySongs: {},
   currentCategory: '全部',
   category: [],
+  currentPage: 1,
 })
 
 function reducer(state = defaultState, action) {
@@ -15,6 +16,8 @@ function reducer(state = defaultState, action) {
       return state.set('currentCategory', action.currentCategory)
     case actionTypes.CHANGE_CATEGORY:
       return state.set('category', action.category)
+    case actionTypes.CHANGE_CURRENT_PAGE:
+      return state.set('currentPage', action.page)
     default:
       return state
   }

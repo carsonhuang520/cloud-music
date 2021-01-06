@@ -1,18 +1,20 @@
-import React, { memo, useState } from 'react'
+import React, { memo } from 'react'
 import { useSelector, shallowEqual, useDispatch } from 'react-redux'
 
-import { getCategorySongsAction } from '../../store/actionCreators'
+import {
+  changeCurrentPageAction,
+  getCategorySongsAction,
+} from '../../store/actionCreators'
 import { PER_PAGE_NUMBER } from '../../store/constants'
 import WDPagination from '@/components/pagination'
 import WDSongsCover from '@/components/songs-cover'
 import { SongsListWrapper } from './style'
 
 export default memo(function WDSongsList() {
-  const [currentPage, setCurrentPage] = useState(1)
-
-  const { categorySongs } = useSelector((state) => {
+  const { categorySongs, currentPage } = useSelector((state) => {
     return {
       categorySongs: state.getIn(['songs', 'categorySongs']),
+      currentPage: state.getIn(['songs', 'currentPage']),
     }
   }, shallowEqual)
 
@@ -21,7 +23,7 @@ export default memo(function WDSongsList() {
   const dispatch = useDispatch()
 
   const onPageChange = (val) => {
-    setCurrentPage(val)
+    dispatch(changeCurrentPageAction(val))
     dispatch(getCategorySongsAction(val))
   }
 

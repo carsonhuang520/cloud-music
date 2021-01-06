@@ -3,6 +3,7 @@ import { useSelector, shallowEqual, useDispatch } from 'react-redux'
 
 import {
   changeCurrentCategoryAction,
+  changeCurrentPageAction,
   getCategorySongsAction,
 } from '../../store/actionCreators'
 
@@ -23,6 +24,7 @@ export default memo(function WDSongsHeader() {
   const selectCategory = (name) => {
     dispatch(changeCurrentCategoryAction(name))
     dispatch(getCategorySongsAction(1))
+    dispatch(changeCurrentPageAction(1))
     setShowCategory(false)
   }
 

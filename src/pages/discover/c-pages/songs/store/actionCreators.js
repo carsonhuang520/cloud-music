@@ -18,6 +18,11 @@ export const changeCurrentCategoryAction = (category) => ({
   currentCategory: category,
 })
 
+export const changeCurrentPageAction = (page) => ({
+  type: actionTypes.CHANGE_CURRENT_PAGE,
+  page,
+})
+
 export const getCategoryAction = () => {
   return (dispatch) => {
     getCategory().then((res) => {
