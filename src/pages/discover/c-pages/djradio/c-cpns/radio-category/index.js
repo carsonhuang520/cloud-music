@@ -5,6 +5,7 @@ import classNames from 'classnames'
 import {
   getDjRadioCategoryAction,
   changeCurrentIdAciton,
+  changeCurrentPageAciton,
 } from '../../store/actionCreators'
 
 import { RadioCategoryWrapper, CategoryItemImage } from './style'
@@ -22,6 +23,10 @@ export default memo(function WDRadioCategory() {
     dispatch(getDjRadioCategoryAction())
   }, [dispatch])
 
+  const onClickItem = (id) => {
+    dispatch(changeCurrentIdAciton(id))
+    dispatch(changeCurrentPageAciton(1))
+  }
   return (
     <RadioCategoryWrapper>
       <div className="category-list">
@@ -29,7 +34,7 @@ export default memo(function WDRadioCategory() {
           return (
             <div
               key={item.id}
-              onClick={() => dispatch(changeCurrentIdAciton(item.id))}
+              onClick={() => onClickItem(item.id)}
               className={classNames('category-item', {
                 active: item.id === currentId,
               })}

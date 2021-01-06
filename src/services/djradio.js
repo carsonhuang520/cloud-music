@@ -14,3 +14,14 @@ export const getDjRadioRecommend = (type) => {
     },
   })
 }
+
+export const getDjRadios = (cateId, limit, offset) => {
+  return request({
+    url: '/dj/radio/hot',
+    params: {
+      cateId,
+      limit,
+      offset,
+    },
+  })
+}

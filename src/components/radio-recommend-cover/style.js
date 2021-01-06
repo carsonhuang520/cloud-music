@@ -4,6 +4,7 @@ export const CoverWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 150px;
+  margin-left: 37px;
 
   .name {
     font-size: 14px;
