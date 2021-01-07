@@ -21,7 +21,7 @@ export default memo(function WDSettleSinger() {
 
   return (
     <SettleSingerWrapper>
-      <WDThemeHeaderSmall title="入驻歌手" more="查看更多>" />
+      <WDThemeHeaderSmall title="入驻歌手" more="查看更多>" path="/discover/artist" />
       <div className="singer-list">
         {settleSingers.map((item) => {
           return (

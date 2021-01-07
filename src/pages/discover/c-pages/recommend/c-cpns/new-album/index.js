@@ -22,7 +22,7 @@ export default memo(function WDNewAlbum() {
   }, [dispatch])
   return (
     <AlbumWrapper>
-      <WDThemeHeaderRCM title="新碟上架" />
+      <WDThemeHeaderRCM title="新碟上架" path="/discover/album" />
       <div className="content">
         <button
           className="arrow arrow-left sprite_02"

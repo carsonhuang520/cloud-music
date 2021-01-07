@@ -1,19 +1,32 @@
 import React, { memo } from 'react'
-import { shallowEqual, useSelector } from 'react-redux'
+import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 
 import { formatDate, getSizeImage } from '@/utils/format-utils'
+import { changePlayListAction, getSongDetailAction } from '@/pages/player/store'
 
 import WDThemeHeaderSong from '@/components/theme-header-song'
 import { RankingListWrapper } from './style'
 
 export default memo(function WDRankingList() {
-  const { rankingList } = useSelector((state) => {
+  const { rankingList, playList } = useSelector((state) => {
     return {
       rankingList: state.getIn(['ranking', 'rankingList']),
+      playList: state.getIn(['player', 'playList']),
     }
   }, shallowEqual)
 
+  const dispatch = useDispatch()
+
   const tracks = rankingList.tracks || []
+
+  const onAddSong = (e, item) => {
+    e.preventDefault()
+    dispatch(changePlayListAction([...playList, item]))
+  }
+
+  const onClickSong = (item) => {
+    dispatch(getSongDetailAction(item.id))
+  }
 
   return (
     <RankingListWrapper>
@@ -43,7 +56,10 @@ export default memo(function WDRankingList() {
                       {index < 3 ? (
                         <img src={getSizeImage(item.al.picUrl, 50)} alt="" />
                       ) : null}
-                      <span className="play sprite_table"></span>
+                      <span
+                        className="play sprite_table"
+                        onClick={() => onClickSong(item)}
+                      ></span>
                       <span className="name text_hover">{item.name}</span>
                     </div>
                   </td>
@@ -56,12 +72,22 @@ export default memo(function WDRankingList() {
                         href="/"
                         className="btn sprite_icon2"
                         title="添加到播放列表"
+                        onClick={(e) => onAddSong(e, item)}
                       >
                         添加到列表
                       </a>
-                      <span className="item favor sprite_table" title="收藏"></span>
-                      <span className="item share sprite_table" title="分享"></span>
-                      <span className="item download sprite_table" title="下载"></span>
+                      <span
+                        className="item favor sprite_table"
+                        title="收藏"
+                      ></span>
+                      <span
+                        className="item share sprite_table"
+                        title="分享"
+                      ></span>
+                      <span
+                        className="item download sprite_table"
+                        title="下载"
+                      ></span>
                     </div>
                   </td>
                   <td className="text_hover">{item.ar[0].name}</td>

@@ -4,6 +4,11 @@ export const PlayListWrapper = styled.div`
   position: relative;
   width: 553px;
   padding: 2px;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   .play-item {
     padding: 0 8px 0 25px;
@@ -18,12 +23,18 @@ export const PlayListWrapper = styled.div`
 
     &:hover {
       color: #ffffff;
-      background-color: #000000;
+      background-color: rgba(0, 0, 0, 0.3);
+
+      .right {
+        .operate {
+          display: flex;
+        }
+      }
     }
 
     &.active {
       color: #ffffff;
-      background-color: #000000;
+      background-color: rgba(0, 0, 0, 0.3);
 
       &::before {
         content: '';
@@ -39,6 +50,55 @@ export const PlayListWrapper = styled.div`
     .right {
       display: flex;
       align-items: center;
+
+      .operate {
+        display: none;
+        align-items: center;
+        margin-right: 10px;
+
+        .item {
+          display: inline-block;
+          height: 16px;
+          margin: 0 0 0 10px;
+          text-indent: -9999px;
+
+          &.favor {
+            width: 16px;
+            background-position: -24px 0;
+
+            &:hover {
+              background-position: -24px -20px;
+            }
+          }
+
+          &.share {
+            width: 14px;
+            background-position: 0 0;
+
+            &:hover {
+              background-position: 0 -20px;
+            }
+          }
+
+          &.download {
+            width: 14px;
+            background-position: -57px -50px;
+
+            &:hover {
+              background-position: -80px -50px;
+            }
+          }
+
+          &.delete {
+            width: 13px;
+            background-position: -51px 0;
+
+            &:hover {
+              background-position: -51px -20px;
+            }
+          }
+        }
+      }
 
       .singer {
         width: 80px;

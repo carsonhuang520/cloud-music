@@ -185,6 +185,7 @@ export const Operator = styled.div`
       width: 32px;
       height: 113px;
       background-position: 0px -503px;
+      z-index: 999;
 
       .ant-slider {
         width: 4px;

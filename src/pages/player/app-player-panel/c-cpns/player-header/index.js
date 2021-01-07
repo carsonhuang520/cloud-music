@@ -1,5 +1,7 @@
 import React, { memo } from 'react'
-import { useSelector, shallowEqual } from 'react-redux'
+import { useSelector, shallowEqual, useDispatch } from 'react-redux'
+
+import { changePlayListAction } from '@/pages/player/store'
 
 import { PlayerWrapper, PlayerLeft, PlayerRight } from './style'
 
@@ -11,6 +13,12 @@ export default memo(function WDPlayerHeader() {
     }
   }, shallowEqual)
 
+  const dispatch = useDispatch()
+
+  const onDeleteAll = () => {
+    dispatch(changePlayListAction([]))
+  }
+
   return (
     <PlayerWrapper>
       <PlayerLeft>
@@ -21,7 +29,7 @@ export default memo(function WDPlayerHeader() {
             收藏全部
           </button>
           <span className="line">|</span>
-          <button>
+          <button onClick={() => onDeleteAll()}>
             <i className="sprite_playlist icon remove"></i>
             清除
           </button>

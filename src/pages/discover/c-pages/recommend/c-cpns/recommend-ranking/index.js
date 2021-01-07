@@ -23,7 +23,7 @@ export default memo(function WDRecomendRanking() {
   }, [dispatch])
   return (
     <RankingWrapper>
-      <WDThemeHeaderRCM title="榜单" />
+      <WDThemeHeaderRCM title="榜单" path="/discover/ranking" />
       <div className="tops">
         <WDTopRanking info={state.upRanking} />
         <WDTopRanking info={state.newRanking} />

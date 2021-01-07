@@ -1,4 +1,5 @@
 import React, { memo } from 'react'
+import { shallowEqual, useSelector } from 'react-redux'
 
 import WDPlayerHeader from './c-cpns/player-header'
 import WDPlayerList from './c-cpns/player-list'
@@ -6,13 +7,20 @@ import WDLyricPanel from './c-cpns/lyric-panel'
 import { PlayerPanelWrapper } from './style'
 
 export default memo(function WDAppPlayerPanel() {
+  const { currentSong } = useSelector(
+    (state) => ({
+      currentSong: state.getIn(['player', 'currentSong']),
+    }),
+    shallowEqual
+  )
+
   return (
     <PlayerPanelWrapper>
       <WDPlayerHeader />
       <div className="main">
         <img
           className="image"
-          src="https://p4.music.126.net/qeN7o2R3_OTPhghmkctFBQ==/764160591569856.jpg"
+          src={currentSong.al && currentSong.al.picUrl}
           alt=""
         />
         <WDPlayerList />

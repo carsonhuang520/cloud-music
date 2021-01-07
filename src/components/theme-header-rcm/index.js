@@ -1,10 +1,11 @@
 import React, { memo } from 'react'
 import PropTypes from 'prop-types'
 
+import { NavLink } from 'react-router-dom'
 import { HeaderWrapper } from './style'
 
 const WDThemeHeaderRCM = memo(function (props) {
-  const { title, keywords } = props
+  const { title, keywords, path } = props
   return (
     <HeaderWrapper className="sprite_02">
       <div className="left">
@@ -23,7 +24,8 @@ const WDThemeHeaderRCM = memo(function (props) {
         </div>
       </div>
       <div className="right">
-        <a href="todo">更多</a>
+        {/* <a href="todo">更多</a> */}
+        <NavLink to={path}>更多</NavLink>
         <i className="icon sprite_02"></i>
       </div>
     </HeaderWrapper>

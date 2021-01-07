@@ -19,11 +19,6 @@ const changeCurrentSongIndexAction = (index) => ({
   index,
 })
 
-const changePlayListAction = (playList) => ({
-  type: actionTypes.CHANGE_PLAYLIST,
-  playList,
-})
-
 const changeLyricListAction = (lyricList) => ({
   type: actionTypes.CHANGE_LYRIC_LIST,
   lyricList,
@@ -37,6 +32,11 @@ const changeSimiPlaylistAction = (simiPlaylist) => ({
 const changeSimiSongsAction = (simiSongs) => ({
   type: actionTypes.CHANGE_SIMI_SONGS,
   simiSongs,
+})
+
+export const changePlayListAction = (playList) => ({
+  type: actionTypes.CHANGE_PLAYLIST,
+  playList,
 })
 
 export const changePlaySongAction = (param) => {
